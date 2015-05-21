@@ -1,0 +1,37 @@
+- debug: msg={{ ansible_env.HOME }}
+
+- name: download golang
+  shell: "curl -O {{ golang_host }}/{{ golang_archive }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}"
+
+- name: install golang
+  unarchive: "src={{ ansible_env.HOME }}/{{ golang_archive }} dest={{ golang_dir }} copy=no"
+
+- name: install software
+  apt: pkg={{ item }} update_cache=yes
+  with_items:
+    - git
+    - dnsutils
+
+- name: install golang dependencies
+  shell: "{{ item }}"
+  environment: 
+    GOPATH: "{{ ansible_env.HOME }}/go"
+    PATH: "{{ ansible_env.PATH }}:{{ golang_dir }}/go/bin"
+  with_items:
+    - "go get github.com/tools/godep"
+    - "go get github.com/mesosphere/mesos-dns"
+
+- name: build Mesos DNS from source
+  shell: make all
+  environment: 
+    GOPATH: "{{ ansible_env.HOME }}/go"
+    PATH: "{{ ansible_env.PATH }}:{{ golang_dir }}/go/bin:{{ ansible_env.HOME }}/go/bin"
+  args:
+    chdir: "{{ ansible_env.HOME }}/go/src/github.com/mesosphere/mesos-dns"
+
+- name: add nameserver
+  lineinfile: > 
+    dest=/etc/resolv.conf
+    line="nameserver {{ ansible_eth1.ipv4.address }}"

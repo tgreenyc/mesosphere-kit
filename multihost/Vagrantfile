@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
     vb.gui = false
  
     # Customize the amount of memory on the VM:
-    vb.memory = "2048"
+    vb.memory = "1024"
   end
   #
   # View the documentation for the provider you are using for more
@@ -64,7 +64,7 @@ Vagrant.configure(2) do |config|
 
   # Provision using Ansible playbook
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbooks/main.yml"
+    ansible.playbook = "playbooks/single.yml"
   end
 
   # Enable provisioning with a shell script. Additional provisioners such as

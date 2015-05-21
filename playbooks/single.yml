@@ -1,43 +1,39 @@
-- name: Deploy mesosphere
-  hosts: all
-  sudo: True
-  tasks:
-    - name: install nginx
-      shell: apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
+- name: install nginx
+  shell: apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
 
-    - name: mesosphere repo setup
-      lineinfile: > 
-        dest=/etc/apt/sources.list.d/mesosphere.list
-        create=yes
-        line="deb http://repos.mesosphere.io/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+- name: mesosphere repo setup
+  lineinfile: > 
+    dest=/etc/apt/sources.list.d/mesosphere.list
+    create=yes
+    line="deb http://{{ repo }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
 
-    - name: update /etc/hosts
-      lineinfile: >
-        dest=/etc/hosts
-        line="{{ ansible_eth1.ipv4.address }} {{ ohai_hostname }}"
+- name: update /etc/hosts
+  lineinfile: >
+    dest=/etc/hosts
+    line="{{ ansible_eth1.ipv4.address }} {{ ohai_hostname }}"
 
-    - name: install software
-      apt: pkg={{ item }} update_cache=yes
-      with_items:
-        - python-setuptools
-        - mesos
-        - marathon
+- name: install software
+  apt: pkg={{ item }} update_cache=yes
+  with_items:
+    - python-setuptools
+    - mesos
+    - marathon
 
-    - name: install python bindings
-      easy_install: name=http://downloads.mesosphere.io/master/ubuntu/14.04/mesos-0.22.1-py2.7-linux-x86_64.egg
+- name: install python bindings
+  easy_install: name={{ python_bindings }}
 
-    - name: mesosphere ip configuration
-      lineinfile: > 
-        dest={{ item }}
-        create=yes
-        line={{ ansible_eth1.ipv4.address }}
-      with_items:
-        - /etc/mesos-master/ip
-        - /etc/mesos-slave/ip
+- name: mesosphere ip configuration
+  lineinfile: > 
+    dest={{ item }}
+    create=yes
+    line={{ ansible_eth1.ipv4.address }}
+  with_items:
+    - /etc/mesos-master/ip
+    - /etc/mesos-slave/ip
 
-    - name: start mesos services
-      service: name={{ item }} state=started
-      with_items:
-        - mesos-master
-        - mesos-slave
-        - marathon
+- name: start mesos services
+  service: name={{ item }} state=started
+  with_items:
+    - mesos-master
+    - mesos-slave
+    - marathon
