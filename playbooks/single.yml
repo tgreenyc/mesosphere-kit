@@ -18,6 +18,7 @@
     - python-setuptools
     - mesos
     - marathon
+    - chronos
 
 - name: install python bindings
   easy_install: name={{ python_bindings }}
@@ -37,3 +38,4 @@
     - mesos-master
     - mesos-slave
     - marathon
+    - chronos
