@@ -47,8 +47,10 @@ of resources!
 
 ## Frequently Asked Questions
 
-Q: Why isn't your automatino idempotent?
+```
+Q: Why isn't your automation idempotent?
 A: I don't know what that means.
+```
 
 
 ## Troubleshooting
