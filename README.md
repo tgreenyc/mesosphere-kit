@@ -7,10 +7,10 @@ Vagrantfile but more importantly, how to install and use Vagrant.
 
 ## Requirements
 
-* 8GB of memory is more than enough, probably could get away with less.
-* VirtualBox 4.3.x or later (http://www.virtualbox.org).
-* Vagrant 1.7.x or later (http://www.vagrantup.com).
-* Ansible 1.9.x or later. (http://docs.ansible.com/intro_installation.html#getting-ansible) 
+* 8GB of memory is more than enough, probably could get away with less
+* VirtualBox 4.3.x or later (http://www.virtualbox.org)
+* Vagrant 1.7.x or later (http://www.vagrantup.com)
+* Ansible 1.9.x or later (http://docs.ansible.com/intro_installation.html#getting-ansible) 
 
 ## Instructions
 
@@ -21,14 +21,13 @@ Vagrantfile but more importantly, how to install and use Vagrant.
 5.  If multinode, then change to the `mesosphere-kit/multihost` directory. (see *Adding More
     Slaves* section below if you think your local machine has the
     horsepower!
-6.  Run `vagrant up` and wait a little bit while Ansible auto-configures
-    the environment.
+6.  Run `vagrant up` for either single or multi-node configuration, and wait a little bit 
+    while Ansible auto-configures the environment.
 
 ## Adding More Slaves
 
 1. From the root of the git repo, type `cd multihost`.
 2. Open `Vagrantfile` and look for the *SLAVES* line:
-snippet...
 ```ruby
 SLAVES = 1
 
