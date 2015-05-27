@@ -1,4 +1,4 @@
-- name: install nginx
+- name: add ubuntu keyserver
   shell: apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
 
 - name: mesosphere repo setup
