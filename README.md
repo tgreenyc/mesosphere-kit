@@ -29,7 +29,7 @@ Vagrantfile but more importantly, how to install and use Vagrant.
 1. From the root of the git repo, type `cd multihost`.
 2. Open `Vagrantfile` and look for the *SLAVES* line:
 snippet...
-```
+```ruby
 SLAVES = 1
 
 Vagrant.configure(2) do |config|
