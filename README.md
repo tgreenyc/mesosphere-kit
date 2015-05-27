@@ -12,6 +12,13 @@ Vagrantfile but more importantly, how to install and use Vagrant.
 * Vagrant 1.7.x or later (http://www.vagrantup.com)
 * Ansible 1.9.x or later (http://docs.ansible.com/intro_installation.html#getting-ansible) 
 
+## Frameworks Included
+
+* Marathon
+* Chronos
+
+(I can easily add more, just haven't had a need for others yet).
+
 ## Instructions
 
 1.  Install requirements (see above).
@@ -37,6 +44,12 @@ Vagrant.configure(2) do |config|
 3. Modify SLAVES constant to increase the number of VM's
    provisioned/configured as slaves.  Be careful that you don't run out
 of resources!
+
+## Frequently Asked Questions
+
+Q: Why isn't your automatino idempotent?
+A: I don't know what that means.
+
 
 ## Troubleshooting
 
