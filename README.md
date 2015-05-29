@@ -45,6 +45,12 @@ Vagrant.configure(2) do |config|
    provisioned/configured as slaves.  Be careful that you don't run out
 of resources!
 
+## UI Access to Mesos and Frameworks
+
+* Mesos - http://44.44.44.10:5050
+* Marathon - http://44.44.44.10:8080 
+* Chronos - http://44.44.44.10:4400
+
 ## Frequently Asked Questions
 
 ```
