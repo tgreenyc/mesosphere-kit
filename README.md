@@ -7,6 +7,9 @@ Vagrantfile but more importantly, how to install and use Vagrant.
 
 ## Requirements
 
+The operating system chosen for this project is Ubuntu 14.04 x86_64
+(Trusty), which will be downloaded automatically by Vagrant.
+
 * 8GB of memory is more than enough, probably could get away with less
 * VirtualBox 4.3.x or later (http://www.virtualbox.org)
 * Vagrant 1.7.x or later (http://www.vagrantup.com)
