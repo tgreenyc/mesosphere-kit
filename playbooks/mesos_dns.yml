@@ -40,6 +40,7 @@
 
 - name: add nameserver
   lineinfile: > 
+    insertbefore=BOF
     dest=/etc/resolv.conf
     line="nameserver {{ ansible_eth1.ipv4.address }}"
 
