@@ -16,12 +16,16 @@
   apt: pkg={{ item }} update_cache=yes
   with_items:
     - python-setuptools
+    - python-pip
     - mesos
     - marathon
     - chronos
 
 - name: install python bindings
   easy_install: name={{ python_bindings }}
+
+- name: install mesos cli
+  pip: name=mesos.cli
 
 - name: mesosphere ip configuration
   lineinfile: > 
