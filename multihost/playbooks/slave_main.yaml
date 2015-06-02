@@ -1,0 +1,8 @@
+- name: Deploy Mesos slave node
+  hosts: all
+  sudo: True
+
+  tasks:
+    - include: slave_mesos.yaml
+      vars: 
+        repo: repos.mesosphere.io
