@@ -1,0 +1,13 @@
+- name: install haproxy software
+  apt: pkg=haproxy
+
+- name : start haproxy
+  service: name=haproxy state=started enabled=yes
+   
+- name: download haproxy_marathon_bridge script
+  get_url: "url={{ haproxy_script }} dest={{ ansible_env.HOME }} mode=0700"
+
+- name: install haproxy_marathon_bridge script
+  shell: "./haproxy-marathon-bridge install_haproxy_system {{ ohai_hostname }}:{{ marathon_port }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}"

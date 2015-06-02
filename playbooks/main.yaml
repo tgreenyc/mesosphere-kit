@@ -3,12 +3,17 @@
   sudo: True
 
   tasks:
-    - include: single.yml
+    - include: single.yaml
       vars: 
         python_bindings: http://downloads.mesosphere.io/master/ubuntu/14.04/mesos-0.22.1-py2.7-linux-x86_64.egg
         repo: repos.mesosphere.io
-    - include: mesos_dns.yml
+    - include: mesos_dns.yaml
       vars:
         golang_host: https://storage.googleapis.com/golang
         golang_archive: go1.4.2.linux-amd64.tar.gz
         golang_dir: /usr/local
+    - include: mesos_haproxy.yaml
+      vars:
+        haproxy_script: https://raw.githubusercontent.com/mesosphere/marathon/master/bin/haproxy-marathon-bridge
+        marathon_port: 8080
+
