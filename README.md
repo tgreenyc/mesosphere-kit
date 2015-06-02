@@ -22,6 +22,14 @@ The operating system chosen for this project is Ubuntu 14.04 x86_64
 
 (I can easily add more, just haven't had a need for others yet).
 
+## Service Discovery
+
+* Mesos-DNS is installed and running on the master node by default.
+* Haproxy is installed, configured, and running on the master node by
+  default.  NOTE: It is only configured to support inbound load
+  balancing to deployed Marathon apps.  See 'haproxy-marathon-bridge'
+  link below for details. 
+
 ## Instructions
 
 1.  Install requirements (see above).
@@ -59,6 +67,10 @@ of resources!
 ```
 Q: Why isn't your automation idempotent?
 A: I don't know what that means.
+
+Q: What is haproxy-marathon-bridge and what does it do?
+A: See https://docs.mesosphere.com/getting-started/service-discovery/
+   for details.
 ```
 
 

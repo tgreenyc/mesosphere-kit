@@ -9,6 +9,7 @@
 
 - name: update /etc/hosts
   lineinfile: >
+    insertbefore=BOF
     dest=/etc/hosts
     line="{{ ansible_eth1.ipv4.address }} {{ ohai_hostname }}"
 
@@ -17,8 +18,10 @@
     - slave_ips
     - slave_hostnames
 
+
 - name: append slaves to /etc/hosts
   lineinfile: >
+    insertbefore=BOF
     dest=/etc/hosts
     line="{{ item.0 }} {{ item.1 }}"
   with_together:

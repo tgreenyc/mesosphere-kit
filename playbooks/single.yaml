@@ -7,10 +7,10 @@
     create=yes
     line="deb http://{{ repo }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
 
-- name: update /etc/hosts
-  lineinfile: >
-    dest=/etc/hosts
-    line="{{ ansible_eth1.ipv4.address }} {{ ohai_hostname }}"
+#- name: update /etc/hosts
+#  lineinfile: >
+#    dest=/etc/hosts
+#    line="{{ ansible_eth1.ipv4.address }} {{ ohai_hostname }}"
 
 - name: install software
   apt: pkg={{ item }} update_cache=yes
