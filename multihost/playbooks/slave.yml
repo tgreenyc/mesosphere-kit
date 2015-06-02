@@ -16,6 +16,7 @@
 
     - name: update /etc/hosts
       lineinfile: >
+        insertbefore=BOF
         dest=/etc/hosts
         line="{{ item }}"
       with_items:

@@ -1,5 +1,12 @@
 - debug: msg={{ ansible_env.HOME }}
 
+- name: setup /etc/hosts file
+  template: >
+    src=templates/hosts.j2 dest=/etc/hosts
+    mode=0644
+    owner=root
+    group=root
+
 - name: download golang
   shell: "curl -O {{ golang_host }}/{{ golang_archive }}"
   args:
@@ -33,8 +40,15 @@
 
 - name: add nameserver
   lineinfile: > 
+    insertbefore=BOF
     dest=/etc/resolv.conf
     line="nameserver {{ ansible_eth1.ipv4.address }}"
 
 - name: simple Mesos DNS configuration file
   template: "src=templates/config.json.j2 dest={{ ansible_env.HOME }}/config.json"
+
+- name: start mesos-dns server
+  shell: "nohup mesos-dns -config={{ ansible_env.HOME }}/config.json &"
+  environment: 
+    GOPATH: "{{ ansible_env.HOME }}/go"
+    PATH: "{{ ansible_env.PATH }}:{{ golang_dir }}/go/bin:{{ ansible_env.HOME }}/go/bin"
