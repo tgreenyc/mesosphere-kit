@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
     end
     # Provision using Ansible playbook
     mm.vm.provision "ansible" do |ansible|
-      ansible.playbook = "playbooks/master.yml"
+      ansible.playbook = "playbooks/master.yaml"
     end
   end
 
@@ -37,7 +37,7 @@ Vagrant.configure(2) do |config|
           master_hostname: "mesos-master",
           master_ip: "44.44.44.10"
         }
-        ansible.playbook = "playbooks/slave.yml"
+        ansible.playbook = "playbooks/slave.yaml"
       end
     end
   end
