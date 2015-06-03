@@ -16,3 +16,4 @@
       vars:
         haproxy_script: https://raw.githubusercontent.com/mesosphere/marathon/master/bin/haproxy-marathon-bridge
         marathon_port: 8080
+    - include: master_docker.yaml

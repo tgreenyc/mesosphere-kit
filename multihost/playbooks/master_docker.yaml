@@ -1,0 +1,2 @@
+- name: deploy sample docker app definition for marathon 
+  template: "src=files/docker_marathon.json dest={{ ansible_env.HOME }}"

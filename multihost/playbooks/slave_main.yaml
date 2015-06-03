@@ -6,3 +6,10 @@
     - include: slave_mesos.yaml
       vars: 
         repo: repos.mesosphere.io
+    - include: slave_docker.yaml
+      vars:
+        docker_url: https://get.docker.com/
+
+  handlers:
+  - name: restart mesos-slave
+    service: name=mesos-slave state=restarted

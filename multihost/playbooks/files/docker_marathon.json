@@ -1,0 +1,17 @@
+{
+  "id": "gowiki",
+  "cpus": 0.5,
+  "mem": 32.0,
+  "instances": 2,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "greent/gowiki",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8080, "hostPort": 0 }
+      ]
+    }
+  }
+}
+

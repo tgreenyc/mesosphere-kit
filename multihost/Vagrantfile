@@ -6,7 +6,7 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 
-SLAVES = 1
+SLAVES = 2
 slave_hostnames = []
 slave_ips = []
 
@@ -17,6 +17,10 @@ end
 
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end
 
   config.vm.define "mesos-master" do |mm|
     mm.vm.network "private_network", ip: "44.44.44.10"

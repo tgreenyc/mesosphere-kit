@@ -30,6 +30,13 @@ The operating system chosen for this project is Ubuntu 14.04 x86_64
   balancing to deployed Marathon apps.  See 'haproxy-marathon-bridge'
   link below for details. 
 
+## Deploying Docker Containers
+* Slaves automatically will deploy and configure the Docker engine for
+  consumption by Marathon.  The mesos-master host also includes an
+  example JSON definition of an app template that can be used to deploy
+  a lightweight container from Docker Hub.  Path to the file is
+  `/root/docker_marathon.json`
+
 ## Instructions
 
 1.  Install requirements (see above).
@@ -71,6 +78,11 @@ A: I don't know what that means.
 Q: What is haproxy-marathon-bridge and what does it do?
 A: See https://docs.mesosphere.com/getting-started/service-discovery/
    for details.
+
+Q: Why does it deploy so slowly?
+A: If you don't have enough local resources then this is to be expected.
+   However, it is strongly encouraged that you use vagrant-cachier to
+   create a reusable local apt repository. 
 ```
 
 
